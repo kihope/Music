@@ -53,14 +53,6 @@ import com.kabouzeid.gramophone.util.NavigationUtil;
 import com.kabouzeid.gramophone.util.PhonographColorUtil;
 import com.kabouzeid.gramophone.util.Util;
 
-import java.util.ArrayList;
-import java.util.Locale;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Be careful when changing things in this Activity!
@@ -75,33 +67,11 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
 
     private Album album;
 
-    @BindView(R.id.list)
     ObservableRecyclerView recyclerView;
-    @BindView(R.id.image)
     ImageView albumArtImageView;
-    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.header)
-    View headerView;
-    @BindView(R.id.header_overlay)
-    View headerOverlay;
-
-    @BindView(R.id.artist_icon)
-    ImageView artistIconImageView;
-    @BindView(R.id.duration_icon)
-    ImageView durationIconImageView;
-    @BindView(R.id.song_count_icon)
-    ImageView songCountIconImageView;
-    @BindView(R.id.album_year_icon)
-    ImageView albumYearIconImageView;
-    @BindView(R.id.artist_text)
-    TextView artistTextView;
-    @BindView(R.id.duration_text)
-    TextView durationTextView;
-    @BindView(R.id.song_count_text)
-    TextView songCountTextView;
-    @BindView(R.id.album_year_text)
-    TextView albumYearTextView;
+    TextView albumTitleView;
+    View songsBackgroundView;
 
     private AlbumSongAdapter adapter;
 
@@ -118,7 +88,11 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setDrawUnderStatusbar(true);
-        ButterKnife.bind(this);
+        recyclerView = (ObservableRecyclerView) findViewById(R.id.list);
+        albumArtImageView = (ImageView) findViewById(R.id.image);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        albumTitleView = (TextView) findViewById(R.id.title);
+        songsBackgroundView = findViewById(R.id.list_background);
 
         lastFMRestClient = new LastFMRestClient(this);
 

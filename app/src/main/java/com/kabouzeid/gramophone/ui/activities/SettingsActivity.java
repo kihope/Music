@@ -39,15 +39,9 @@ import com.kabouzeid.gramophone.ui.activities.base.AbsBaseActivity;
 import com.kabouzeid.gramophone.util.NavigationUtil;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 
-import java.util.Arrays;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class SettingsActivity extends AbsBaseActivity implements ColorChooserDialog.ColorCallback {
     public static final String TAG = SettingsActivity.class.getSimpleName();
 
-    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     @Override
@@ -55,7 +49,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
         setDrawUnderStatusbar(true);
-        ButterKnife.bind(this);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setStatusbarColorAuto();
         setNavigationbarColorAuto();

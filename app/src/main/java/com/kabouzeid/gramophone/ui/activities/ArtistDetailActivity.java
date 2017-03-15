@@ -54,11 +54,6 @@ import com.kabouzeid.gramophone.util.PhonographColorUtil;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 import com.kabouzeid.gramophone.util.Util;
 
-import java.util.ArrayList;
-import java.util.Locale;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -74,11 +69,10 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
 
     public static final String EXTRA_ARTIST_ID = "extra_artist_id";
 
-    @BindView(R.id.list)
-    ObservableListView songListView;
-    @BindView(R.id.image)
     ImageView artistImage;
-    @BindView(R.id.toolbar)
+    View songListBackground;
+    ObservableListView songListView;
+    TextView artistName;
     Toolbar toolbar;
     @BindView(R.id.header)
     View headerView;
@@ -135,7 +129,11 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setDrawUnderStatusbar(true);
-        ButterKnife.bind(this);
+        artistImage = (ImageView) findViewById(R.id.image);
+        songListBackground = findViewById(R.id.list_background);
+        songListView = (ObservableListView) findViewById(R.id.list);
+        artistName = (TextView) findViewById(R.id.title);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         lastFMRestClient = new LastFMRestClient(this);
         usePalette = PreferenceUtil.getInstance(this).albumArtistColoredFooters();
@@ -161,7 +159,7 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
 
     private void initViews() {
         songListHeader = LayoutInflater.from(this).inflate(R.layout.artist_detail_header, songListView, false);
-        albumRecyclerView = ButterKnife.findById(songListHeader, R.id.recycler_view);
+        albumRecyclerView = (RecyclerView) songListHeader.findViewById(R.id.recycler_view);
     }
 
     private void setUpViews() {

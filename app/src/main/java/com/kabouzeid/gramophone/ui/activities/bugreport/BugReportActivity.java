@@ -44,9 +44,6 @@ import java.io.IOException;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class BugReportActivity extends AbsThemeActivity {
 
     private static final int STATUS_BAD_CREDENTIALS = 401;
@@ -66,34 +63,16 @@ public class BugReportActivity extends AbsThemeActivity {
 
     private DeviceInfo deviceInfo;
 
-    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.input_layout_title)
-    TextInputLayout inputLayoutTitle;
-    @BindView(R.id.input_title)
     TextInputEditText inputTitle;
-    @BindView(R.id.input_layout_description)
-    TextInputLayout inputLayoutDescription;
-    @BindView(R.id.input_description)
     TextInputEditText inputDescription;
-    @BindView(R.id.air_textDeviceInfo)
     TextView textDeviceInfo;
-
-    @BindView(R.id.input_layout_username)
-    TextInputLayout inputLayoutUsername;
-    @BindView(R.id.input_username)
     TextInputEditText inputUsername;
-    @BindView(R.id.input_layout_password)
-    TextInputLayout inputLayoutPassword;
-    @BindView(R.id.input_password)
     TextInputEditText inputPassword;
-    @BindView(R.id.option_use_account)
     RadioButton optionUseAccount;
-    @BindView(R.id.option_anonymous)
     RadioButton optionManual;
 
-    @BindView(R.id.button_send)
     FloatingActionButton sendFab;
 
     private static final String ISSUE_TRACKER_LINK = "https://github.com/kabouzeid/Phonograph";
@@ -102,7 +81,15 @@ public class BugReportActivity extends AbsThemeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bug_report);
-        ButterKnife.bind(this);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        inputTitle = (TextInputEditText) findViewById(R.id.input_title);
+        inputDescription = (TextInputEditText) findViewById(R.id.input_description);
+        textDeviceInfo = (TextView) findViewById(R.id.air_textDeviceInfo);
+        inputUsername = (TextInputEditText) findViewById(R.id.input_username);
+        inputPassword = (TextInputEditText) findViewById(R.id.input_password);
+        optionUseAccount = (RadioButton) findViewById(R.id.option_use_account);
+        optionManual = (RadioButton) findViewById(R.id.option_anonymous);
+        sendFab = (FloatingActionButton) findViewById(R.id.button_send);
 
         setStatusbarColorAuto();
         setNavigationbarColorAuto();
