@@ -5,4 +5,7 @@
 
     <color name="app_shortcut_default_foreground">@color/md_blue_grey_500</color>
     <color name="app_shortcut_default_background">@color/md_grey_50</color>
+    
+    <color name="revenge_primary">#fff5f5f5</color>
+    <color name="revenge_accent">#ff099be6</color>
 </resources>
