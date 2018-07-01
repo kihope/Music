@@ -53,7 +53,7 @@ android {
         renderscriptTargetApi 27
         vectorDrawables.useSupportLibrary = true
 
-        applicationId 'com.kabouzeid.gramophone'
+        applicationId 'com.revenge.gramophone'
         versionCode 161
         versionName '1.0.1'
     }
@@ -72,10 +72,6 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-        }
-        debug {
-            applicationIdSuffix '.debug'
-            versionNameSuffix ' DEBUG (' + gitBranch() + ')'
         }
     }
     packagingOptions {
