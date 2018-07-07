@@ -20,13 +20,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.appthemehelper.util.NavigationViewUtil;
-import com.kabouzeid.gramophone.App;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.dialogs.ChangelogDialog;
 import com.kabouzeid.gramophone.dialogs.ScanMediaFolderChooserDialog;
@@ -39,7 +37,6 @@ import com.kabouzeid.gramophone.loader.PlaylistSongLoader;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.service.MusicService;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
-import com.kabouzeid.gramophone.ui.activities.intro.AppIntroActivity;
 import com.kabouzeid.gramophone.ui.fragments.mainactivity.folders.FoldersFragment;
 import com.kabouzeid.gramophone.ui.fragments.mainactivity.library.LibraryFragment;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
@@ -97,10 +94,6 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             setMusicChooser(PreferenceUtil.getInstance(this).getLastMusicChooser());
         } else {
             restoreCurrentFragment();
-        }
-
-        if (!checkShowIntro()) {
-            checkShowChangelog();
         }
     }
 
@@ -326,17 +319,6 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
     public void onPanelCollapsed(View view) {
         super.onPanelCollapsed(view);
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-    }
-
-    private boolean checkShowIntro() {
-        if (!PreferenceUtil.getInstance(this).introShown()) {
-            PreferenceUtil.getInstance(this).setIntroShown();
-            ChangelogDialog.setChangelogRead(this);
-            blockRequestPermissions = true;
-            new Handler().postDelayed(() -> startActivityForResult(new Intent(MainActivity.this, AppIntroActivity.class), APP_INTRO_REQUEST), 50);
-            return true;
-        }
-        return false;
     }
 
     private boolean checkShowChangelog() {
